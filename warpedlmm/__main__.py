@@ -13,15 +13,15 @@
 # limitations under the License.
 
 
-import warpedlmm
+from . import warpedlmm
 import argparse
-import testing
+from . import testing
 import pandas
 from numpy.testing import Tester
-import util
-import fastlmm_interface as fastlmm
+from . import util
+from . import fastlmm_interface as fastlmm
 import numpy as np
-import stepwise
+from .stepwise import warped_stepwise
 import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
@@ -47,7 +47,7 @@ if __name__ == '__main__':
     if options.run_test:
         Y = np.exp(Y)
 
-    y_pheno, m, _, estimated_h2 = stepwise.warped_stepwise(Y, X, K, covariates=covar,
+    y_pheno, m, _, estimated_h2 = warped_stepwise(Y, X, K, covariates=covar,
                                                            max_covariates=options.max_covariates, num_restarts=options.random_restarts,
                                                            qv_cutoff=options.qv_cutoff,
                                                            pv_cutoff=options.pv_cutoff)
